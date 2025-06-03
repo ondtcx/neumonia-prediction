@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PMML version="4.2" xmlns="http://www.dmg.org/PMML-4_2">
+  <Header copyright="Nury">
+    <Application name="KNIME" version="5.4.3"/>
+  </Header>
+  <DataDictionary numberOfFields="6">
+    <DataField name="Sex" optype="categorical" dataType="string">
+      <Value value="Male"/>
+      <Value value="Female"/>
+    </DataField>
+    <DataField name="BP" optype="categorical" dataType="string">
+      <Value value="Low"/>
+      <Value value="Normal"/>
+      <Value value="High"/>
+    </DataField>
+    <DataField name="Cholesterol" optype="categorical" dataType="string">
+      <Value value="High"/>
+      <Value value="Normal"/>
+    </DataField>
+    <DataField name="Age_binned" optype="categorical" dataType="string">
+      <Value value="20s"/>
+      <Value value="40s"/>
+      <Value value="30s"/>
+      <Value value="50s"/>
+      <Value value="&lt;20s"/>
+      <Value value="60s"/>
+      <Value value=">60s"/>
+    </DataField>
+    <DataField name="Na_to_K_binned" optype="categorical" dataType="string">
+      <Value value="&lt;10"/>
+      <Value value="10-20"/>
+      <Value value="20-30"/>
+      <Value value=">30s"/>
+    </DataField>
+    <DataField name="DrugType" optype="categorical" dataType="string">
+      <Value value="drugX"/>
+      <Value value="DrugY"/>
+      <Value value="drugC"/>
+      <Value value="drugA"/>
+      <Value value="drugB"/>
+    </DataField>
+  </DataDictionary>
+  <TreeModel modelName="DecisionTree" functionName="classification" splitCharacteristic="multiSplit" missingValueStrategy="lastPrediction" noTrueChildStrategy="returnNullPrediction">
+    <MiningSchema>
+      <MiningField name="Sex" invalidValueTreatment="asIs"/>
+      <MiningField name="BP" invalidValueTreatment="asIs"/>
+      <MiningField name="Cholesterol" invalidValueTreatment="asIs"/>
+      <MiningField name="Age_binned" invalidValueTreatment="asIs"/>
+      <MiningField name="Na_to_K_binned" invalidValueTreatment="asIs"/>
+      <MiningField name="DrugType" invalidValueTreatment="asIs" usageType="target"/>
+    </MiningSchema>
+    <Node id="0" score="drugX" recordCount="60.0">
+      <True/>
+      <ScoreDistribution value="drugX" recordCount="24.0"/>
+      <ScoreDistribution value="DrugY" recordCount="21.0"/>
+      <ScoreDistribution value="drugC" recordCount="4.0"/>
+      <ScoreDistribution value="drugA" recordCount="7.0"/>
+      <ScoreDistribution value="drugB" recordCount="4.0"/>
+      <Node id="1" score="drugX" recordCount="10.0">
+        <SimplePredicate field="Na_to_K_binned" operator="equal" value="&lt;10"/>
+        <ScoreDistribution value="drugX" recordCount="9.0"/>
+        <ScoreDistribution value="DrugY" recordCount="0.0"/>
+        <ScoreDistribution value="drugC" recordCount="0.0"/>
+        <ScoreDistribution value="drugA" recordCount="1.0"/>
+        <ScoreDistribution value="drugB" recordCount="0.0"/>
+        <Node id="2" score="drugX" recordCount="3.0">
+          <SimplePredicate field="BP" operator="equal" value="Low"/>
+          <ScoreDistribution value="drugX" recordCount="3.0"/>
+          <ScoreDistribution value="DrugY" recordCount="0.0"/>
+          <ScoreDistribution value="drugC" recordCount="0.0"/>
+          <ScoreDistribution value="drugA" recordCount="0.0"/>
+          <ScoreDistribution value="drugB" recordCount="0.0"/>
+        </Node>
+        <Node id="3" score="drugX" recordCount="6.0">
+          <SimplePredicate field="BP" operator="equal" value="Normal"/>
+          <ScoreDistribution value="drugX" recordCount="6.0"/>
+          <ScoreDistribution value="DrugY" recordCount="0.0"/>
+          <ScoreDistribution value="drugC" recordCount="0.0"/>
+          <ScoreDistribution value="drugA" recordCount="0.0"/>
+          <ScoreDistribution value="drugB" recordCount="0.0"/>
+        </Node>
+        <Node id="4" score="drugA" recordCount="1.0">
+          <SimplePredicate field="BP" operator="equal" value="High"/>
+          <ScoreDistribution value="drugX" recordCount="0.0"/>
+          <ScoreDistribution value="DrugY" recordCount="0.0"/>
+          <ScoreDistribution value="drugC" recordCount="0.0"/>
+          <ScoreDistribution value="drugA" recordCount="1.0"/>
+          <ScoreDistribution value="drugB" recordCount="0.0"/>
+        </Node>
+      </Node>
+      <Node id="5" score="drugX" recordCount="29.0">
+        <SimplePredicate field="Na_to_K_binned" operator="equal" value="10-20"/>
+        <ScoreDistribution value="drugX" recordCount="15.0"/>
+        <ScoreDistribution value="DrugY" recordCount="0.0"/>
+        <ScoreDistribution value="drugC" recordCount="4.0"/>
+        <ScoreDistribution value="drugA" recordCount="6.0"/>
+        <ScoreDistribution value="drugB" recordCount="4.0"/>
+        <Node id="6" score="drugX" recordCount="11.0">
+          <SimplePredicate field="BP" operator="equal" value="Low"/>
+          <ScoreDistribution value="drugX" recordCount="7.0"/>
+          <ScoreDistribution value="DrugY" recordCount="0.0"/>
+          <ScoreDistribution value="drugC" recordCount="4.0"/>
+          <ScoreDistribution value="drugA" recordCount="0.0"/>
+          <ScoreDistribution value="drugB" recordCount="0.0"/>
+          <Node id="7" score="drugC" recordCount="4.0">
+            <SimplePredicate field="Cholesterol" operator="equal" value="High"/>
+            <ScoreDistribution value="drugX" recordCount="0.0"/>
+            <ScoreDistribution value="DrugY" recordCount="0.0"/>
+            <ScoreDistribution value="drugC" recordCount="4.0"/>
+            <ScoreDistribution value="drugA" recordCount="0.0"/>
+            <ScoreDistribution value="drugB" recordCount="0.0"/>
+          </Node>
+          <Node id="8" score="drugX" recordCount="7.0">
+            <SimplePredicate field="Cholesterol" operator="equal" value="Normal"/>
+            <ScoreDistribution value="drugX" recordCount="7.0"/>
+            <ScoreDistribution value="DrugY" recordCount="0.0"/>
+            <ScoreDistribution value="drugC" recordCount="0.0"/>
+            <ScoreDistribution value="drugA" recordCount="0.0"/>
+            <ScoreDistribution value="drugB" recordCount="0.0"/>
+          </Node>
+        </Node>
+        <Node id="9" score="drugX" recordCount="8.0">
+          <SimplePredicate field="BP" operator="equal" value="Normal"/>
+          <ScoreDistribution value="drugX" recordCount="8.0"/>
+          <ScoreDistribution value="DrugY" recordCount="0.0"/>
+          <ScoreDistribution value="drugC" recordCount="0.0"/>
+          <ScoreDistribution value="drugA" recordCount="0.0"/>
+          <ScoreDistribution value="drugB" recordCount="0.0"/>
+        </Node>
+        <Node id="10" score="drugA" recordCount="10.0">
+          <SimplePredicate field="BP" operator="equal" value="High"/>
+          <ScoreDistribution value="drugX" recordCount="0.0"/>
+          <ScoreDistribution value="DrugY" recordCount="0.0"/>
+          <ScoreDistribution value="drugC" recordCount="0.0"/>
+          <ScoreDistribution value="drugA" recordCount="6.0"/>
+          <ScoreDistribution value="drugB" recordCount="4.0"/>
+          <Node id="11" score="drugA" recordCount="2.0">
+            <SimplePredicate field="Age_binned" operator="equal" value="20s"/>
+            <ScoreDistribution value="drugX" recordCount="0.0"/>
+            <ScoreDistribution value="DrugY" recordCount="0.0"/>
+            <ScoreDistribution value="drugC" recordCount="0.0"/>
+            <ScoreDistribution value="drugA" recordCount="2.0"/>
+            <ScoreDistribution value="drugB" recordCount="0.0"/>
+          </Node>
+          <Node id="13" score="drugA" recordCount="4.0">
+            <SimplePredicate field="Age_binned" operator="equal" value="30s"/>
+            <ScoreDistribution value="drugX" recordCount="0.0"/>
+            <ScoreDistribution value="DrugY" recordCount="0.0"/>
+            <ScoreDistribution value="drugC" recordCount="0.0"/>
+            <ScoreDistribution value="drugA" recordCount="4.0"/>
+            <ScoreDistribution value="drugB" recordCount="0.0"/>
+          </Node>
+          <Node id="14" score="drugB" recordCount="1.0">
+            <SimplePredicate field="Age_binned" operator="equal" value="50s"/>
+            <ScoreDistribution value="drugX" recordCount="0.0"/>
+            <ScoreDistribution value="DrugY" recordCount="0.0"/>
+            <ScoreDistribution value="drugC" recordCount="0.0"/>
+            <ScoreDistribution value="drugA" recordCount="0.0"/>
+            <ScoreDistribution value="drugB" recordCount="1.0"/>
+          </Node>
+          <Node id="16" score="drugB" recordCount="2.0">
+            <SimplePredicate field="Age_binned" operator="equal" value="60s"/>
+            <ScoreDistribution value="drugX" recordCount="0.0"/>
+            <ScoreDistribution value="DrugY" recordCount="0.0"/>
+            <ScoreDistribution value="drugC" recordCount="0.0"/>
+            <ScoreDistribution value="drugA" recordCount="0.0"/>
+            <ScoreDistribution value="drugB" recordCount="2.0"/>
+          </Node>
+          <Node id="17" score="drugB" recordCount="1.0">
+            <SimplePredicate field="Age_binned" operator="equal" value=">60s"/>
+            <ScoreDistribution value="drugX" recordCount="0.0"/>
+            <ScoreDistribution value="DrugY" recordCount="0.0"/>
+            <ScoreDistribution value="drugC" recordCount="0.0"/>
+            <ScoreDistribution value="drugA" recordCount="0.0"/>
+            <ScoreDistribution value="drugB" recordCount="1.0"/>
+          </Node>
+        </Node>
+      </Node>
+      <Node id="18" score="DrugY" recordCount="14.0">
+        <SimplePredicate field="Na_to_K_binned" operator="equal" value="20-30"/>
+        <ScoreDistribution value="drugX" recordCount="0.0"/>
+        <ScoreDistribution value="DrugY" recordCount="14.0"/>
+        <ScoreDistribution value="drugC" recordCount="0.0"/>
+        <ScoreDistribution value="drugA" recordCount="0.0"/>
+        <ScoreDistribution value="drugB" recordCount="0.0"/>
+      </Node>
+      <Node id="19" score="DrugY" recordCount="7.0">
+        <SimplePredicate field="Na_to_K_binned" operator="equal" value=">30s"/>
+        <ScoreDistribution value="drugX" recordCount="0.0"/>
+        <ScoreDistribution value="DrugY" recordCount="7.0"/>
+        <ScoreDistribution value="drugC" recordCount="0.0"/>
+        <ScoreDistribution value="drugA" recordCount="0.0"/>
+        <ScoreDistribution value="drugB" recordCount="0.0"/>
+      </Node>
+    </Node>
+  </TreeModel>
+</PMML>
